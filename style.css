@@ -28,6 +28,7 @@ h1 svg{
 #header{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin: 20px 6px 30px;
 }
 #buttons{
     text-align: right;
@@ -43,4 +44,14 @@ button{
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+}
+div#game{
+    line-height: 35px;
+    height: 105px;
+    overflow: hidden;
+}
+div.word{
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0 5px;
 }
