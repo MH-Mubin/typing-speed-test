@@ -53,6 +53,7 @@ div#game{
 }
 #words{
     filter: blur(5px);
+    color: var(--textSecondary);
 }
 #game:focus #words{
     filter: blur(0);
@@ -62,6 +63,9 @@ div#game{
     inset: 0;
     text-align: center;
     padding-top: 35px;
+}
+#game:focus #focus-error{
+    display: none;
 }
 div.word{
     display: inline-block;
