@@ -4,7 +4,7 @@ const wordsCount = words.length;
 function addClass(el,name){
     el.className += ' '+name;
 }
-functionremoveClass(el,name){
+function removeClass(el,name){
     el.className = el.className.replace(name,'');
 }
 
