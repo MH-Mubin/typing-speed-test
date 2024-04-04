@@ -1,6 +1,14 @@
 const words='Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, explicabo!'.split(' ');
 const wordsCount = words.length;
 
+function addClass(el,name){
+    el.className += ' '+name;
+}
+functionremoveClass(el,name){
+    el.className = el.className.replace(name,'');
+}
+
+
 function randomWord(){
     const randomIndex = Math.ceil(Math.random() * wordsCount); //deleted x: according to video
     return words[randomIndex];
@@ -18,6 +26,11 @@ function newGame(){
     for(let i=0; i<200; i++){
         document.getElementById('words').innerHTML += formatWord(randomWord());
     }
+    document.querySelector('.word')
 }
+
+document.getElementById('game').addEventListener('keyup', ev =>{
+    const key=ev.key;
+})
 
 newGame();
