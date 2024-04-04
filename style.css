@@ -72,3 +72,9 @@ div.word{
     font-family: 'Roboto Mono', monospace;
     margin: 0 5px;
 }
+.letter.correct{
+    color: #fff;
+}
+.letter.incorrect{
+    color: rgb(250, 46, 46);
+}
