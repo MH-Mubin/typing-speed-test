@@ -26,7 +26,8 @@ function newGame(){
     for(let i=0; i<200; i++){
         document.getElementById('words').innerHTML += formatWord(randomWord());
     }
-    document.querySelector('.word')
+    // document.querySelector('.word').classList.add('current');
+    // document.querySelector('.letter').classList.add('current');
 }
 
 document.getElementById('game').addEventListener('keyup', ev =>{
