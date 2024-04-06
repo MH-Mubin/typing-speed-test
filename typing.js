@@ -26,12 +26,17 @@ function newGame(){
     for(let i=0; i<200; i++){
         document.getElementById('words').innerHTML += formatWord(randomWord());
     }
+    addClass(document.querySelector('.word'), 'current');
+    addClass(document.querySelector('.letter'), 'current');
+
+
     // document.querySelector('.word').classList.add('current');
     // document.querySelector('.letter').classList.add('current');
 }
 
 document.getElementById('game').addEventListener('keyup', ev =>{
     const key=ev.key;
+    const currentLetter = document.querySelector('.letter.current')
 })
 
 newGame();
