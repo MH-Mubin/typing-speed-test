@@ -14,11 +14,7 @@ function randomWord(){
     return words[randomIndex];
 }
 function formatWord(word){
-    return `<div class="word">
-        <span class="letter">
-            ${word.split('').join('</span><span class="letter">')}
-        </span>
-    </div>`;
+    return `<div class="word"><span class="letter">${word.split('').join('</span><span class="letter">')}</span></div>`;
 }
 
 function newGame(){
@@ -35,8 +31,11 @@ function newGame(){
 }
 
 document.getElementById('game').addEventListener('keyup', ev =>{
-    const key=ev.key;
+    const key=ev.key;//change
     const currentLetter = document.querySelector('.letter.current')
+    const expected = currentLetter.innerHTML;
+
+    console.log({key,expected});
 })
 
 newGame();
