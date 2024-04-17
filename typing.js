@@ -11,7 +11,7 @@ function removeClass(el,name){
 
 function randomWord(){
     const randomIndex = Math.ceil(Math.random() * wordsCount); //deleted x: according to video
-    return words[randomIndex];
+    return words[randomIndex - 1];
 }
 function formatWord(word){
     return `<div class="word"><span class="letter">${word.split('').join('</span><span class="letter">')}</span></div>`;
@@ -34,8 +34,17 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     const key=ev.key;//change
     const currentLetter = document.querySelector('.letter.current')
     const expected = currentLetter.innerHTML;
+    const isLetter = key.length === 1 && key !== ' ';
 
     console.log({key,expected});
+
+    if (isLetter){
+        if (currentLetter){
+            addClass(currentLetter, key === expected ? 'correct' : 'incorrect');
+            removeClass(currentLetter, 'current');
+            addClass(currentLetter.nextSibling, 'current');
+        }
+    }
 })
 
 newGame();
