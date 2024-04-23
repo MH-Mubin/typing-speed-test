@@ -70,12 +70,10 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     }
     //move cursor
     const nextLetter = document.querySelector('.letter.current');
+    const nextWord = document.querySelector('.word.current')
     const cursor = document.getElementById('cursor');
-    if (nextLetter) {
-        cursor.style.top = nextLetter.getBoundingClientRect().top+ 2 +'px';
-        cursor.style.left = nextLetter.getBoundingClientRect().left+ 2 +'px';
-
-    }
+    cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top + 2 + 'px';
+    cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter? 'left' : 'right'] + 'px';
 })
 
 newGame();
