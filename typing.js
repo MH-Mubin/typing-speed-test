@@ -79,6 +79,20 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             addClass(currentWord.previousSibling, 'current');
             removeClass(currentLetter, 'current');
             addClass(currentWord.previousSibling.lastChild, 'current');
+            removeClass(currentWord.previousSibling.lastChild, 'incorrect');
+            removeClass(currentWord.previousSibling.lastChild, 'correct');
+        }
+        if (currentLetter && !isFirstLetter){
+            //move back one letter, invalidate letter
+            removeClass(currentLetter, 'current');
+            addClass(currentLetter.previousSibling, 'current');
+            removeClass(currentLetter.previousSibling.lastChild, 'incorrect');
+            removeClass(currentLetter.previousSibling.lastChild, 'correct');
+        }
+        if (!currentLetter) {
+            addClass(currentWord.lastChild, 'current')
+            removeClass(currentWord.lastChild, 'incorrect');
+            removeClass(currentWord.lastChild, 'correct');
         }
     }
     //move cursor
