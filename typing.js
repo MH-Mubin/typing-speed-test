@@ -1,5 +1,8 @@
 const words='Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, explicabo!'.split(' ');
 const wordsCount = words.length;
+const gameTime = 30*1000;
+window.timer = null;
+window.gameStart = null;
 
 function addClass(el,name){
     el.className += ' '+name;
@@ -24,7 +27,7 @@ function newGame(){
     }
     addClass(document.querySelector('.word'), 'current');
     addClass(document.querySelector('.letter'), 'current');
-
+    window.timer = null;
 
     // document.querySelector('.word').classList.add('current');
     // document.querySelector('.letter').classList.add('current');
@@ -41,6 +44,19 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     const isFirstLetter = currentLetter === currentWord.firstChild;
 
     console.log({key,expected});
+
+    if (!window.timer && isLetter) {
+        window.timer = setInterval(() => {
+            if (!window.gameStart){
+                window.gameStart = (new Date()).getTime();
+            }
+            const cuttentTime = (new Date()).getTime();
+            const msPassed = currentTime - window.gameStart;
+            const sPassed = math.round(msPassed / 1000);
+            const sLeft = (gameTime / 1000) - sPassed;
+            document.getElementById('info').innerHTML = sLeft + '';
+        }, 1000);
+    }
 
     if (isLetter){
         if (currentLetter){
@@ -94,6 +110,14 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             removeClass(currentWord.lastChild, 'incorrect');
             removeClass(currentWord.lastChild, 'correct');
         }
+    }
+    //move lines / words
+
+    if (currentWord.getBoundingClientRect().top > 100) {
+        const words  = document.getElementById('words');
+        const margin = parseInt(words.style.marginTop || '0px')
+        words.style.marginTop = (margin - 35) + 'px';
+
     }
     //move cursor
     const nextLetter = document.querySelector('.letter.current');
