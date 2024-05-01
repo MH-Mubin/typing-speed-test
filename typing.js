@@ -32,6 +32,10 @@ function newGame(){
     // document.querySelector('.word').classList.add('current');
     // document.querySelector('.letter').classList.add('current');
 }
+function gameOver(){
+    clearInterval(window.timer);
+    addClass(document.getElementById('game'), 'over')
+}
 
 document.getElementById('game').addEventListener('keyup', ev =>{
     const key=ev.key;//change
@@ -42,6 +46,10 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     const isSpace = key === ' ';
     const isBackspace = key === 'Backspace';
     const isFirstLetter = currentLetter === currentWord.firstChild;
+
+    if (document.querySelector('#game.over')){
+        return;
+    }
 
     console.log({key,expected});
 
@@ -54,6 +62,9 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             const msPassed = currentTime - window.gameStart;
             const sPassed = math.round(msPassed / 1000);
             const sLeft = (gameTime / 1000) - sPassed;
+            if ( sLeft <= 0){
+                gameOver();
+            }
             document.getElementById('info').innerHTML = sLeft + '';
         }, 1000);
     }
