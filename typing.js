@@ -78,6 +78,7 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             const sLeft = (gameTime / 1000) - sPassed;
             if ( sLeft <= 0){
                 gameOver();
+                return;
             }
             document.getElementById('info').innerHTML = sLeft + '';
         }, 1000);
