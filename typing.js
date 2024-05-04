@@ -27,6 +27,7 @@ function newGame(){
     }
     addClass(document.querySelector('.word'), 'current');
     addClass(document.querySelector('.letter'), 'current');
+    document.getElementById('info').innerHTML = (gameTime / 1000) + '';
     window.timer = null;
 
     // document.querySelector('.word').classList.add('current');
@@ -152,5 +153,10 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top + 2 + 'px';
     cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter? 'left' : 'right'] + 'px';
 })
+
+document.getElementById('newGameBtn').addEventListener('click',() => {
+    gameOver();
+    newGame();
+});
 
 newGame();
