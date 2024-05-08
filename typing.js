@@ -3,7 +3,7 @@ const wordsCount = words.length;
 const gameTime = 30*1000;
 window.timer = null;
 window.gameStart = null;
-window.pauseTime = 0;
+window.pauseTime = 0;//
 
 function addClass(el,name){
     el.className += ' '+name;
@@ -37,26 +37,27 @@ function newGame(){
 function getWpm(){
     const words = [...document.querySelectorAll('.word')];
     const lastTypedword = document.querySelector('.word.current');
-    const lastTypedwordIndex = words.indexOf(lastTypedword);
+    const lastTypedwordIndex = words.indexOf(lastTypedword) + 1;
     const typedwords = words.slice(0, lastTypedwordIndex);
     const correctWords = typedwords.filter(word => {
         const letters = [...word.children];
         const incorrectLetters = letters.filter(letter => letter.className.includes('incorrect'));
         const correctLetters = letters.filter(letter => letter.className.includes('correct'));
-        return incorrectLetters.length === 0 && correctLetters.length === letters.length
+        return incorrectLetters.length === 0 && correctLetters.length === letters.length;
     });
     return correctWords.length / gameTime * 60000;
 }
 function gameOver(){
     clearInterval(window.timer);
     addClass(document.getElementById('game'), 'over');
-    document.getElementById('info').innerHTML = `WPM: ${getWpm()}`;
+    const result = getWpm();//
+    document.getElementById('info').innerHTML = `WPM: ${result}`;//
 }
 
 document.getElementById('game').addEventListener('keyup', ev =>{
     const key=ev.key;//change
-    const currentWord = document.querySelector('.word.current')
-    const currentLetter = document.querySelector('.letter.current')
+    const currentWord = document.querySelector('.word.current');
+    const currentLetter = document.querySelector('.letter.current');
     const expected = currentLetter?.innerHTML || ' ';
     const isLetter = key.length === 1 && key !== ' ';
     const isSpace = key === ' ';
@@ -77,7 +78,7 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             const cuttentTime = (new Date()).getTime();
             const msPassed = currentTime - window.gameStart;
             const sPassed = math.round(msPassed / 1000);
-            const sLeft = (gameTime / 1000) - sPassed;
+            const sLeft = math.round(gameTime / 1000) - sPassed;
             if ( sLeft <= 0){
                 gameOver();
                 return;
