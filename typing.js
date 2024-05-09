@@ -103,7 +103,7 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     }
     if (isSpace) {
         if (expected !== ' '){
-            const lettersToInvalidate = [...document.querySelectorAll('.word.current .letter:not(.correct)')]
+            const lettersToInvalidate = [...document.querySelectorAll('.word.current .letter:not(.correct)')];
             lettersToInvalidate.forEach(letter =>{
                 addClass(letter, 'incorrect');
             })
@@ -142,12 +142,12 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     }
     //move lines / words
 
-    if (currentWord.getBoundingClientRect().top > 100) {
+    if (currentWord.getBoundingClientRect().top > 100) { //will change to top > 250 
         const words  = document.getElementById('words');
         const margin = parseInt(words.style.marginTop || '0px')
         words.style.marginTop = (margin - 35) + 'px';
-
     }
+    
     //move cursor
     const nextLetter = document.querySelector('.letter.current');
     const nextWord = document.querySelector('.word.current')
